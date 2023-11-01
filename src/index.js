@@ -5,6 +5,11 @@ const firstPlayer = 'X';
 const secondPlayer = 'O';
 const button = document.querySelector('.tic__button-again');
 let i = 0;
+let scoreFirst = 1;
+let scoreSecond = 1;
+
+localStorage.setItem('firstPlayer', '0')
+localStorage.setItem('secondPlayer', '0')
 
 const winCombos = [
 	[0, 1, 2],
@@ -30,10 +35,11 @@ function startGame() {
 		cells[i].style.removeProperty('background-color');
 		cells[i].addEventListener('click', turnClick, false);
 	}
+  document.querySelector('.tic__score').innerText = `Счет ${localStorage.getItem('firstPlayer')} : ${localStorage.getItem('secondPlayer')}`;
 }
 
 function turnClick(square) {
-	if (typeof origBoard[square.target.id] == 'number') {
+	if (typeof origBoard[square.target.id] === 'number') {
     if (i === 0 || (i % 2) === 0) {
       turn(square.target.id, firstPlayer);
     } else {
@@ -59,13 +65,15 @@ function checkWin(board, player) {
 function gameOver(gameWon) {
 	for (let index of winCombos[gameWon.index]) {
 		document.getElementById(index).style.backgroundColor =
-			gameWon.player == firstPlayer ? '#42AAFF' : '#EE204D';
+			gameWon.player === firstPlayer ? '#42AAFF' : '#EE204D';
 	}
 	for (let i = 0; i < cells.length; i++) {
 		cells[i].removeEventListener('click', turnClick, false);
 	}
-	declareWinner(gameWon.player == firstPlayer ? "Первый игрок выиграл!" : "Второй игрок выиграл");
+	declareWinner(gameWon.player === firstPlayer ? "Первый игрок выиграл!" : "Второй игрок выиграл");
+  gameWon.player === firstPlayer ? localStorage.setItem('firstPlayer', JSON.stringify(scoreFirst++)) : localStorage.setItem('secondPlayer', JSON.stringify(scoreSecond++));
 }
+document.querySelector('.tic__score').innerText = `Счет ${localStorage.getItem('firstPlayer')} : ${localStorage.getItem('secondPlayer')}`;
 
 function declareWinner(who) {
 	document.querySelector(".tic__endgame").style.display = "block";
@@ -73,7 +81,7 @@ function declareWinner(who) {
 }
 
 function emptySquares() {
-	return origBoard.filter(s => typeof s == 'number');
+	return origBoard.filter(s => typeof s === 'number');
 }
 
 function checkTie() {
