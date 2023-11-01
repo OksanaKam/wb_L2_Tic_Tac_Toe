@@ -1,0 +1,90 @@
+@import url(../vendor/normalize.css);
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif, sans-serif;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.tic-title {
+  margin: 0;
+  text-align: center;
+  padding: 30px 0px;
+  font-size: 38px;
+  position: relative;
+}
+
+.tic__table {
+  border-collapse: collapse;
+  position: absolute;
+  left: 50%;
+  margin-left: -155px;
+  margin-top: 30px;
+  top: 50px;
+}
+
+.tic__cell {
+  border:  2px solid #333;
+  height:  100px;
+  width:  100px;
+  text-align:  center;
+  vertical-align:  middle;
+  cursor: pointer;
+}
+
+table tr:first-child td {
+  border-top: 0;
+}
+
+table tr:last-child td {
+  border-bottom: 0;
+}
+
+table tr td:first-child {
+  border-left: 0;
+}
+
+table tr td:last-child {
+  border-right: 0;
+}
+
+.tic__endgame {
+  display: flex;
+  width: 450px;
+  padding: 20px 0;
+  color: black;
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+}
+
+.tic__button-again {
+  display: flex;
+  width: 150px;
+  height: 52px;
+  margin: 350px auto 0;
+  padding: 14px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
+  background: #726EFA;
+  color: white;
+  text-align: center;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  border: none;
+  cursor: pointer;
+}
+
